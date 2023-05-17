@@ -8,6 +8,8 @@ const Register = () => {
   const { createUser, UpdateUser, setPUpdate } = useContext(AuthContext);
   const handleRegister = (event) => {
     event.preventDefault();
+    setError("");
+    setSuccess("");
     const form = event.target;
     const name = form.name.value;
     const photo = form.photo.value;

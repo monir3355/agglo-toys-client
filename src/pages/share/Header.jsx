@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        alert("Are you want to logout!");
+      })
+      .then((error) => {
+        console.log(error);
+      });
+  };
   const navItems = (
     <>
       <li>
@@ -11,12 +22,16 @@ const Header = () => {
       <li>
         <Link to="/allToys">All Toys</Link>
       </li>
-      <li>
-        <Link to="/myToys">My Toys</Link>
-      </li>
-      <li>
-        <Link to="/addToys">Add Toys</Link>
-      </li>
+      {user && (
+        <>
+          <li>
+            <Link to="/myToys">My Toys</Link>
+          </li>
+          <li>
+            <Link to="/addToys">Add Toys</Link>
+          </li>
+        </>
+      )}
       <li>
         <Link to="/blogs">Blogs</Link>
       </li>
@@ -60,14 +75,25 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <label className="btn btn-ghost btn-circle avatar mr-2">
-          <div className="w-10 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
-        </label>
-        <Link to="/login" className="btn btn-primary">
-          Login
-        </Link>
+        {user ? (
+          <>
+            <label
+              className="btn btn-ghost btn-circle avatar mr-2 tooltip tooltip-bottom tooltip-primary"
+              data-tip={user?.displayName}
+            >
+              <div className="w-12 rounded-full">
+                <img src={user?.photoURL} />
+              </div>
+            </label>
+            <button onClick={handleLogOut} className="btn btn-primary">
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="btn btn-primary">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

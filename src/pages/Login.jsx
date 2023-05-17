@@ -9,7 +9,7 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
     if (!/(?=.*[A-Z])/.test(password)) {
       setError("At least one uppercase");
       return;

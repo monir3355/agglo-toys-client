@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const { createUser, UpdateUser, setPUpdate } = useContext(AuthContext);
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -22,6 +24,24 @@ const Register = () => {
       setError("Please input 8 or more letter");
       return;
     }
+    createUser(email, password)
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+        setSuccess("Successfully registration!");
+        form.reset();
+        UpdateUser(name, photo)
+          .then(() => {
+            console.log("Profile Updated");
+            setPUpdate(new Date().getTime());
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
   return (
     <div className="py-20 mx-4">

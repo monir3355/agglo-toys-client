@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <div>
+      <div className="min-h-[calc(100vh-316px)]">
         <Outlet />
       </div>
       <Footer></Footer>

@@ -3,6 +3,7 @@ import Slider from "../../components/Slider";
 import Gallery from "./Gallery";
 import Categories from "./Categories";
 import PlayGround from "./PlayGround";
+import Reviews from "./Reviews";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Gallery />
       <Categories />
       <PlayGround />
+      <Reviews />
     </div>
   );
 };

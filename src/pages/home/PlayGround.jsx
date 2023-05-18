@@ -7,9 +7,17 @@ import play4 from "../../assets/playgrounds/play4.jpeg";
 const PlayGround = () => {
   return (
     <div className="my-16">
-      <h2 className="text-center text-3xl md:text-4xl font-semibold mb-8 text-blue-950">
-        Agglo Toys Play Grounds
-      </h2>
+      <div className="text-center mb-8">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-blue-950">
+          Agglo Toys Play Grounds
+        </h2>
+        <p>
+          The toy playground is a vibrant and exciting space where kids can
+          unleash their energy and imagination. With slides, swings, climbing
+          frames, and interactive play areas, it provides endless fun and
+          opportunities for social interaction.
+        </p>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="cursor-pointer">
           <img className="rounded-lg" src={play1} alt="PlayGround" />

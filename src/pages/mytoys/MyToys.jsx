@@ -1,14 +1,21 @@
-import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import AllToysRow from "./AllToysRow";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import MyToysRow from "./MyToysRow";
 
-const AllToys = () => {
+const MyToys = () => {
   const [seeMore, setSeeMore] = useState(false);
-  const toys = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const [myToys, setMyToys] = useState([]);
+  console.log(myToys);
+  useEffect(() => {
+    fetch(`http://localhost:5000/myToys/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setMyToys(data));
+  }, [user]);
   return (
     <div>
       <h2 className="text-4xl text-blue-900 text-center py-12 font-semibold">
-        All toys: {toys.length}
+        My toys :{myToys.length}
       </h2>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
@@ -28,8 +35,8 @@ const AllToys = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {toys.slice(0, seeMore ? toys.length : 20).map((toy, count) => (
-              <AllToysRow key={toy._id} toy={toy} count={count}></AllToysRow>
+            {myToys.slice(0, seeMore ? myToys.length : 20).map((toy, count) => (
+              <MyToysRow key={toy._id} toy={toy} count={count}></MyToysRow>
             ))}
           </tbody>
         </table>
@@ -48,4 +55,4 @@ const AllToys = () => {
   );
 };
 
-export default AllToys;
+export default MyToys;

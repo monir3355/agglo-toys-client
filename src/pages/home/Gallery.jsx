@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import car1 from "../../assets/car-gallery/car1.jpg";
-import car2 from "../../assets/car-gallery/car2.jpg";
 import car3 from "../../assets/car-gallery/car3.jpg";
 import car4 from "../../assets/car-gallery/car4.jpg";
 import car5 from "../../assets/car-gallery/car5.jpg";
-import car6 from "../../assets/car-gallery/car6.jpg";
 import car7 from "../../assets/car-gallery/car7.jpg";
 import car8 from "../../assets/car-gallery/car8.png";
-import car9 from "../../assets/car-gallery/car9.jpeg";
 
 const Gallery = () => {
   return (

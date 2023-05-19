@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import SocialLogin from "../components/SocialLogin";
 
 const Login = () => {
-  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (event) => {
     event.preventDefault();
     setError("");
@@ -28,8 +31,9 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
         setSuccess("Login Successful!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);

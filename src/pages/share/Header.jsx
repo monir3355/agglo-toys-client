@@ -2,17 +2,30 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
-    logOut()
-      .then(() => {
-        alert("Are you want to logout!");
-      })
-      .then((error) => {
-        console.log(error);
-      });
+    Swal.fire({
+      title: "Are you want Logout?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then(() => {
+            Swal.fire("Logout!", "You are logout", "success");
+          })
+          .then((error) => {
+            console.log(error);
+          });
+      }
+    });
   };
   const navItems = (
     <>

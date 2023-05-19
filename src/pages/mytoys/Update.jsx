@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 
 const Update = () => {
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  // console.log(selectedSubcategory);
   const toy = useLoaderData();
   const {
     _id,
@@ -17,7 +19,7 @@ const Update = () => {
     rating,
     toy_description,
   } = toy;
-  console.log(toy);
+  // console.log(toy);
   const handleUpdateToy = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -26,7 +28,7 @@ const Update = () => {
     const seller_name = form.seller_name.value;
     const seller_url = form.seller_url.value;
     const seller_email = form.seller_email.value;
-    const sub_category = form.sub_category.value;
+    // const sub_category = form.sub_category.value;
     const price = form.price.value;
     const quantity = form.quantity.value;
     const rating = form.rating.value;
@@ -37,7 +39,7 @@ const Update = () => {
       seller_name,
       seller_url,
       seller_email,
-      sub_category,
+      sub_category: selectedSubcategory,
       price,
       quantity,
       rating,
@@ -63,6 +65,16 @@ const Update = () => {
           });
         }
       });
+  };
+  const options = [
+    "Sports Car",
+    "Trucks",
+    "Regular Car",
+    "Mini Fire Trucks",
+    "Mini Police Car",
+  ];
+  const handleSubcategoryChange = (event) => {
+    setSelectedSubcategory(event.target.value);
   };
   return (
     <>
@@ -160,13 +172,18 @@ const Update = () => {
                   <span className="label-text">Sub Category</span>
                 </label>
                 <label className="input-group">
-                  <input
-                    type="text"
-                    defaultValue={sub_category}
-                    name="sub_category"
-                    placeholder="Enter Sub Category"
+                  <select
+                    value={selectedSubcategory}
+                    onChange={handleSubcategoryChange}
                     className="input w-full"
-                  />
+                  >
+                    <option value="">Select a sub-category</option>
+                    {options.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                 </label>
               </div>
             </div>

@@ -43,45 +43,49 @@ const MyToys = () => {
       <h2 className="text-4xl text-blue-900 text-center py-12 font-semibold">
         My toys :{myToys.length}
       </h2>
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>
-                <label>
-                  <p>SL.</p>
-                </label>
-              </th>
-              <th>Toys Info</th>
-              <th>Sub Category</th>
-              <th>Price</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            {myToys.slice(0, seeMore ? myToys.length : 20).map((toy, count) => (
-              <MyToysRow
-                key={toy._id}
-                toy={toy}
-                count={count}
-                handleDeleteToy={handleDeleteToy}
-              ></MyToysRow>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {!seeMore && (
-        <div className="my-12 text-center">
-          <button
-            onClick={() => setSeeMore(!seeMore)}
-            className="btn btn-primary mx-auto"
-          >
-            See More
-          </button>
+      <>
+        <div className="overflow-x-auto w-full">
+          <table className="table w-full">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>
+                  <label>
+                    <p>SL.</p>
+                  </label>
+                </th>
+                <th>Toys Info</th>
+                <th>Sub Category</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {myToys
+                .slice(0, seeMore ? myToys.length : 20)
+                .map((toy, count) => (
+                  <MyToysRow
+                    key={toy._id}
+                    toy={toy}
+                    count={count}
+                    handleDeleteToy={handleDeleteToy}
+                  ></MyToysRow>
+                ))}
+            </tbody>
+          </table>
         </div>
-      )}
+        {!seeMore && (
+          <div className="my-12 text-center">
+            <button
+              onClick={() => setSeeMore(!seeMore)}
+              className="btn btn-primary mx-auto"
+            >
+              See More
+            </button>
+          </div>
+        )}
+      </>
     </div>
   );
 };

@@ -1,15 +1,20 @@
 import React, { useContext, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { googleSignIn, githubSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleGoogle = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -20,6 +25,7 @@ const SocialLogin = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);

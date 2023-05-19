@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const AddToy = () => {
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  // console.log(selectedSubcategory);
   const { user } = useContext(AuthContext);
   const handleAddToy = (event) => {
     event.preventDefault();
@@ -12,7 +14,7 @@ const AddToy = () => {
     const seller_name = form.seller_name.value;
     const seller_url = form.seller_url.value;
     const seller_email = form.seller_email.value;
-    const sub_category = form.sub_category.value;
+    // const sub_category = form.sub_category.value;
     const price = form.price.value;
     const quantity = form.quantity.value;
     const rating = form.rating.value;
@@ -23,7 +25,7 @@ const AddToy = () => {
       seller_name,
       seller_url,
       seller_email,
-      sub_category,
+      sub_category: selectedSubcategory,
       price,
       quantity,
       rating,
@@ -49,6 +51,16 @@ const AddToy = () => {
           });
         }
       });
+  };
+  const options = [
+    "Sports Car",
+    "Trucks",
+    "Regular Car",
+    "Mini Fire Trucks",
+    "Mini Police Car",
+  ];
+  const handleSubcategoryChange = (event) => {
+    setSelectedSubcategory(event.target.value);
   };
   return (
     <>
@@ -144,12 +156,24 @@ const AddToy = () => {
                   <span className="label-text">Sub Category</span>
                 </label>
                 <label className="input-group">
-                  <input
+                  {/* <input
                     type="text"
                     name="sub_category"
                     placeholder="Enter Sub Category"
                     className="input w-full"
-                  />
+                  /> */}
+                  <select
+                    value={selectedSubcategory}
+                    onChange={handleSubcategoryChange}
+                    className="input w-full"
+                  >
+                    <option value="">Select a sub-category</option>
+                    {options.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                 </label>
               </div>
             </div>

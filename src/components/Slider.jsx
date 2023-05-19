@@ -2,6 +2,7 @@ import React from "react";
 import img1 from "../assets/slider/slider-1.jpeg";
 import img2 from "../assets/slider/slider-2.jpeg";
 import img3 from "../assets/slider/slider-3.jpeg";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
@@ -19,7 +20,9 @@ const Slider = () => {
               Vehicles Toys For Babies And Toddlers
             </p>
             <div>
-              <button className="btn btn-primary">All Toys</button>
+              <Link to="/allToys">
+                <button className="btn btn-primary">All Toys</button>
+              </Link>
               <button className="btn btn-primary ml-4">Latest Toys</button>
             </div>
           </div>
@@ -46,7 +49,9 @@ const Slider = () => {
               Vehicles Toys For Babies And Toddlers
             </p>
             <div>
-              <button className="btn btn-primary">All Toys</button>
+              <Link to="/allToys">
+                <button className="btn btn-primary">All Toys</button>
+              </Link>
               <button className="btn btn-primary ml-4">Latest Toys</button>
             </div>
           </div>
@@ -73,7 +78,9 @@ const Slider = () => {
               Vehicles Toys For Babies And Toddlers
             </p>
             <div>
-              <button className="btn btn-primary">All Toys</button>
+              <Link to="/allToys">
+                <button className="btn btn-primary">All Toys</button>
+              </Link>
               <button className="btn btn-primary ml-4">Latest Toys</button>
             </div>
           </div>

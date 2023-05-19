@@ -1,9 +1,9 @@
 import React from "react";
 import Slider from "../../components/Slider";
 import Gallery from "./Gallery";
-import Categories from "./Categories";
 import PlayGround from "./PlayGround";
 import Reviews from "./Reviews";
+import Categories from "./categories/Categories";
 
 const Home = () => {
   return (

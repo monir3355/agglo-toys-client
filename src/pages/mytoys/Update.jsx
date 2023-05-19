@@ -1,10 +1,24 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
 
-const AddToy = () => {
-  const { user } = useContext(AuthContext);
-  const handleAddToy = (event) => {
+const Update = () => {
+  const toy = useLoaderData();
+  const {
+    _id,
+    toy_name,
+    toy_pic_url,
+    seller_name,
+    seller_url,
+    seller_email,
+    sub_category,
+    price,
+    quantity,
+    rating,
+    toy_description,
+  } = toy;
+  console.log(toy);
+  const handleUpdateToy = (event) => {
     event.preventDefault();
     const form = event.target;
     const toy_name = form.toy_name.value;
@@ -17,7 +31,7 @@ const AddToy = () => {
     const quantity = form.quantity.value;
     const rating = form.rating.value;
     const toy_description = form.toy_description.value;
-    const addToyInfo = {
+    const UpdateToyInfo = {
       toy_name,
       toy_pic_url,
       seller_name,
@@ -29,21 +43,21 @@ const AddToy = () => {
       rating,
       toy_description,
     };
-    // console.log(addToyInfo);
-    fetch("http://localhost:5000/toys", {
-      method: "POST",
+    // console.log(UpdateToyInfo);
+    fetch(`http://localhost:5000/toys/${_id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(addToyInfo),
+      body: JSON.stringify(UpdateToyInfo),
     })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "You have successfully added toy",
+            text: "You have successfully Updated Your toy",
             icon: "success",
             confirmButtonText: "Cool",
           });
@@ -53,7 +67,7 @@ const AddToy = () => {
   return (
     <>
       <div className="bg-[#F4F3F0] p-12 lg:p-24 container mx-auto rounded-lg my-12">
-        <h2 className="text-4xl">Add Toys</h2>
+        <h2 className="text-4xl mb-4">Update Toys</h2>
         <p>
           In a world of vibrant imagination, a colorful array of toys comes to
           life. Teddy bears dance with porcelain dolls, while toy cars zoom
@@ -62,7 +76,7 @@ const AddToy = () => {
           sparking joy and endless possibilities.
         </p>
         <div>
-          <form onSubmit={handleAddToy}>
+          <form onSubmit={handleUpdateToy}>
             {/* Row 1 */}
             <div className="md:flex gap-6 my-3">
               <div className="form-control md:w-1/2">
@@ -72,6 +86,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="text"
+                    defaultValue={toy_name}
                     name="toy_name"
                     placeholder="Enter Toy name"
                     className="input w-full"
@@ -85,6 +100,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="url"
+                    defaultValue={toy_pic_url}
                     name="toy_pic_url"
                     placeholder="Enter Toy URL"
                     className="input w-full"
@@ -101,7 +117,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="text"
-                    defaultValue={user?.displayName}
+                    defaultValue={seller_name}
                     name="seller_name"
                     placeholder="Enter Seller Name"
                     className="input w-full"
@@ -115,7 +131,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="url"
-                    defaultValue={user?.photoURL}
+                    defaultValue={seller_url}
                     name="seller_url"
                     placeholder="Enter Seller URL"
                     className="input w-full"
@@ -132,7 +148,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="email"
-                    defaultValue={user?.email}
+                    defaultValue={seller_email}
                     name="seller_email"
                     placeholder="Enter Your Email"
                     className="input w-full"
@@ -146,6 +162,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="text"
+                    defaultValue={sub_category}
                     name="sub_category"
                     placeholder="Enter Sub Category"
                     className="input w-full"
@@ -163,6 +180,7 @@ const AddToy = () => {
                   <input
                     type="text"
                     name="price"
+                    defaultValue={price}
                     placeholder="Enter Your Toy Price"
                     className="input w-full"
                   />
@@ -175,6 +193,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="text"
+                    defaultValue={quantity}
                     name="quantity"
                     placeholder="Enter Available Quantity"
                     className="input w-full"
@@ -191,6 +210,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <input
                     type="text"
+                    defaultValue={rating}
                     name="rating"
                     placeholder="Enter Your Product Rating"
                     className="input w-full"
@@ -207,6 +227,7 @@ const AddToy = () => {
                 <label className="input-group">
                   <textarea
                     name="toy_description"
+                    defaultValue={toy_description}
                     placeholder="Enter Toy Description"
                     className="input w-full h-32"
                   ></textarea>
@@ -217,7 +238,7 @@ const AddToy = () => {
             <div className="text-center">
               <input
                 type="submit"
-                value="Add Toy"
+                value="Update Toy"
                 className="btn btn-primary w-full mt-6"
               />
             </div>
@@ -228,4 +249,4 @@ const AddToy = () => {
   );
 };
 
-export default AddToy;
+export default Update;

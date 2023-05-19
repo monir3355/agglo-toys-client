@@ -1,7 +1,7 @@
 import React from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const ViewDetails = () => {
   const toy = useLoaderData();

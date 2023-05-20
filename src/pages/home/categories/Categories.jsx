@@ -7,13 +7,13 @@ const Categories = () => {
   const [subCategories, setSubCategories] = useState([]);
   // console.log(subCategories);
   useEffect(() => {
-    fetch("http://localhost:5000/categoryToys/Sports Car")
+    fetch("https://agglo-toys-server.vercel.app/categoryToys/Sports Car")
       .then((res) => res.json())
       .then((data) => setSubCategories(data));
   }, []);
   const handleCategory = (category) => {
     // console.log(category);
-    fetch(`http://localhost:5000/categoryToys/${category}`)
+    fetch(`https://agglo-toys-server.vercel.app/categoryToys/${category}`)
       .then((res) => res.json())
       .then((data) => {
         setSubCategories(data);

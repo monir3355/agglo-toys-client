@@ -32,7 +32,7 @@ const AddToy = () => {
       toy_description,
     };
     // console.log(addToyInfo);
-    fetch("http://localhost:5000/toys", {
+    fetch("https://agglo-toys-server.vercel.app/toys", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -46,7 +46,7 @@ const Update = () => {
       toy_description,
     };
     // console.log(UpdateToyInfo);
-    fetch(`http://localhost:5000/toys/${_id}`, {
+    fetch(`https://agglo-toys-server.vercel.app/toys/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

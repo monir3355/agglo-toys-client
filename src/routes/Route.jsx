@@ -10,6 +10,7 @@ import ViewDetails from "../pages/ViewDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyToys from "../pages/mytoys/MyToys";
 import Update from "../pages/mytoys/Update";
+import Blogs from "../pages/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/allToys",
         element: <AllToys />,
-        loader: () => fetch("http://localhost:5000/toys"),
+        loader: () => fetch("https://agglo-toys-server.vercel.app/toys"),
       },
       {
         path: "/myToys",
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
         path: "/register",
         element: <Register />,
       },
@@ -58,13 +63,13 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toys/${params.id}`),
+          fetch(`https://agglo-toys-server.vercel.app/toys/${params.id}`),
       },
       {
         path: "/updateToy/:id",
         element: <Update />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toys/${params.id}`),
+          fetch(`https://agglo-toys-server.vercel.app/toys/${params.id}`),
       },
     ],
   },

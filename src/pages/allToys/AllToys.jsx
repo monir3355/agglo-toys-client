@@ -1,15 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AllToysRow from "./AllToysRow";
 
 const AllToys = () => {
   const [seeMore, setSeeMore] = useState(false);
-  const toys = useLoaderData();
+  const [searchTerm, setSearchTerm] = useState("");
+  // console.log(searchTerm);
+  const [toys, setToys] = useState([]);
+  const loaderToys = useLoaderData();
+  useEffect(() => {
+    setToys(loaderToys);
+  }, [loaderToys]);
+  const handleSearch = () => {
+    fetch(`https://agglo-toys-server.vercel.app/searchToys/${searchTerm}`)
+      .then((res) => res.json())
+      .then((data) => setToys(data));
+  };
   return (
     <div>
       <h2 className="text-4xl text-blue-900 text-center py-12 font-semibold">
         All toys: {toys.length}
       </h2>
+      <div className="mb-8 relative">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="input input-bordered w-full pr-16"
+        />
+        <button
+          onClick={handleSearch}
+          className="btn btn-primary absolute top-0 right-0 rounded-l-none"
+        >
+          Search
+        </button>
+      </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           {/* head */}
@@ -36,12 +61,16 @@ const AllToys = () => {
       </div>
       {!seeMore && (
         <div className="my-12 text-center">
-          <button
-            onClick={() => setSeeMore(!seeMore)}
-            className="btn btn-primary mx-auto"
-          >
-            See More
-          </button>
+          {toys.length >= 20 ? (
+            <button
+              onClick={() => setSeeMore(!seeMore)}
+              className="btn btn-primary mx-auto"
+            >
+              See More
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       )}
     </div>

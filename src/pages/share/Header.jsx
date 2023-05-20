@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
@@ -30,26 +30,80 @@ const Header = () => {
   const navItems = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "py-3 px-4 bg-blue-600 rounded-md text-white"
+              : "py-3 px-4 hover:bg-blue-600 hover:rounded-md hover:text-white"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link to="/allToys">All Toys</Link>
+        <NavLink
+          to="/allToys"
+          className={({ isActive }) =>
+            isActive
+              ? "py-3 px-4 bg-blue-600 rounded-md text-white"
+              : "py-3 px-4 hover:bg-blue-600 hover:rounded-md hover:text-white"
+          }
+        >
+          All Toys
+        </NavLink>
       </li>
       {user && (
         <>
           <li>
-            <Link to="/myToys">My Toys</Link>
+            <NavLink
+              to="/myToys"
+              className={({ isActive }) =>
+                isActive
+                  ? "py-3 px-4 bg-blue-600 rounded-md text-white"
+                  : "py-3 px-4 hover:bg-blue-600 hover:rounded-md hover:text-white"
+              }
+            >
+              My Toys
+            </NavLink>
           </li>
           <li>
-            <Link to="/addToys">Add Toys</Link>
+            <NavLink
+              to="/addToys"
+              className={({ isActive }) =>
+                isActive
+                  ? "py-3 px-4 bg-blue-600 rounded-md text-white"
+                  : "py-3 px-4 hover:bg-blue-600 hover:rounded-md hover:text-white"
+              }
+            >
+              Add Toys
+            </NavLink>
           </li>
         </>
       )}
       <li>
-        <Link to="/blogs">Blogs</Link>
+        <NavLink
+          to="/blogs"
+          className={({ isActive }) =>
+            isActive
+              ? "py-3 px-4 bg-blue-600 rounded-md text-white"
+              : "py-3 px-4 hover:bg-blue-600 hover:rounded-md hover:text-white"
+          }
+        >
+          Blogs
+        </NavLink>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <NavLink
+          to="/register"
+          className={({ isActive }) =>
+            isActive
+              ? "py-3 px-4 bg-blue-600 rounded-md text-white"
+              : "py-3 px-4 hover:bg-blue-600 hover:rounded-md hover:text-white"
+          }
+        >
+          Register
+        </NavLink>
       </li>
     </>
   );
@@ -85,7 +139,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navItems}</ul>
+        <ul className="flex gap-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
         {user ? (

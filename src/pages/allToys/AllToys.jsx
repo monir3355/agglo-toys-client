@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AllToysRow from "./AllToysRow";
+import Banner from "../../components/Banner";
+import useTitle from "../../customHooks/useTitle";
 
 const AllToys = () => {
+  useTitle("All Toys");
   const [seeMore, setSeeMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   // console.log(searchTerm);
@@ -18,8 +21,9 @@ const AllToys = () => {
   };
   return (
     <div>
-      <h2 className="text-4xl text-blue-900 text-center py-12 font-semibold">
-        All toys: {toys.length}
+      <Banner>All Toys</Banner>
+      <h2 className="text-4xl text-blue-900 text-center py-8 font-semibold">
+        Total toys: {toys.length}
       </h2>
       <div className="mb-8 relative">
         <input

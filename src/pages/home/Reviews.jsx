@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import testi1 from "../../assets/testimonial/testi1.jpg";
 import testi2 from "../../assets/testimonial/testi2.jpg";
 import testi3 from "../../assets/testimonial/testi3.jpg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Reviews = () => {
+  useEffect(() => {
+    Aos.init({ duration: 600 });
+  }, []);
   return (
-    <div className="my-16">
+    <div className="my-20">
       <div className="text-center mb-8">
         <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-blue-950">
           Real Reviews From Real Customers
@@ -19,7 +24,10 @@ const Reviews = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="text-center border rounded-lg py-6 px-3">
+        <div
+          data-aos="zoom-in"
+          className="text-center border rounded-lg py-6 px-3"
+        >
           <div className="flex justify-center">
             <FaStar className="text-yellow-500" />
             <FaStar className="text-yellow-500" />
@@ -42,7 +50,10 @@ const Reviews = () => {
             <h4 className="text-xl font-semibold">Lana Rouses</h4>
           </div>
         </div>
-        <div className="text-center border rounded-lg py-6 px-3">
+        <div
+          data-aos="zoom-in"
+          className="text-center border rounded-lg py-6 px-3"
+        >
           <div className="flex justify-center">
             <FaStar className="text-yellow-500" />
             <FaStar className="text-yellow-500" />
@@ -65,7 +76,10 @@ const Reviews = () => {
             <h4 className="text-xl font-semibold">Tom Haris</h4>
           </div>
         </div>
-        <div className="text-center border rounded-lg py-6 px-3">
+        <div
+          data-aos="zoom-in"
+          className="text-center border rounded-lg py-6 px-3"
+        >
           <div className="flex justify-center">
             <FaStar className="text-yellow-500" />
             <FaStar className="text-yellow-500" />

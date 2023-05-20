@@ -26,7 +26,7 @@ const AllToysRow = ({ toy, count }) => {
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
-              <div className="w-28 h-28">
+              <div className="w-40 h-28">
                 <img className="rounded-lg" src={toy_pic_url} alt="Toy" />
               </div>
             </div>

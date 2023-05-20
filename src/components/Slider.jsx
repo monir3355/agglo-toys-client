@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
-    <div className="carousel w-full h-[400px] md:h-[600px]">
+    <div className="carousel w-full h-[400px] md:h-[600px] rounded-lg">
       <div id="slide1" className="carousel-item relative w-full">
         <img src={img1} className="w-full" />
         <div className="absolute flex items-center justify-center gap-5 bg-black/60 bottom-0 left-0 right-0 top-0 text-center">

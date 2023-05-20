@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import car1 from "../../assets/car-gallery/car1.jpg";
 import car3 from "../../assets/car-gallery/car3.jpg";
@@ -6,15 +6,21 @@ import car4 from "../../assets/car-gallery/car4.jpg";
 import car5 from "../../assets/car-gallery/car5.jpg";
 import car7 from "../../assets/car-gallery/car7.jpg";
 import car8 from "../../assets/car-gallery/car8.png";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Gallery = () => {
+  useEffect(() => {
+    Aos.init({ duration: 600 });
+  }, []);
   return (
-    <div className="my-16">
+    <div className="my-20">
       <h2 className="text-center text-3xl md:text-4xl font-semibold mb-8 text-blue-950">
         Agglo Toys Galleries
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >
@@ -24,6 +30,7 @@ const Gallery = () => {
           </div>
         </Link>
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >
@@ -33,6 +40,7 @@ const Gallery = () => {
           </div>
         </Link>
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >
@@ -42,6 +50,7 @@ const Gallery = () => {
           </div>
         </Link>
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >
@@ -51,6 +60,7 @@ const Gallery = () => {
           </div>
         </Link>
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >
@@ -60,6 +70,7 @@ const Gallery = () => {
           </div>
         </Link>
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >
@@ -69,6 +80,7 @@ const Gallery = () => {
           </div>
         </Link>
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >
@@ -78,6 +90,7 @@ const Gallery = () => {
           </div>
         </Link>
         <Link
+          data-aos="zoom-in"
           className="border rounded-lg py-3 relative transform duration-200 hover:-translate-y-2"
           to="/allToys"
         >

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const CarCards = ({ children, category }) => {
+  useEffect(() => {
+    Aos.init({ duration: 200 });
+  }, []);
   const {
     _id,
     toy_name,
@@ -19,7 +24,7 @@ const CarCards = ({ children, category }) => {
   } = category;
   return (
     <>
-      <div className="card glass">
+      <div data-aos="zoom-in" className="card glass">
         <div className="h-60">
           <img
             className="w-full h-full rounded-t-lg"

@@ -1,12 +1,13 @@
 import React from "react";
+import Banner from "../components/Banner";
+import useTitle from "../customHooks/useTitle";
 
 const Blogs = () => {
+  useTitle("Blogs Page");
   return (
     <div>
-      <h3 className="text-4xl font-semibold text-center text-blue-950">
-        blogs
-      </h3>
-      <div className="space-y-4 my-10">
+      <Banner>Blogs Page</Banner>
+      <div className="space-y-4 my-10 px-4 md:px-0">
         <div className="space-y-3">
           <h4 className="text-blue-950 text-lg font-semibold">
             1. What is an access token and refresh token? How do they work and

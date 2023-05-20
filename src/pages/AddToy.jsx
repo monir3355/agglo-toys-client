@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import Banner from "../components/Banner";
+import useTitle from "../customHooks/useTitle";
 
 const AddToy = () => {
+  useTitle("Add Toy");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
   // console.log(selectedSubcategory);
   const { user } = useContext(AuthContext);
@@ -64,6 +67,7 @@ const AddToy = () => {
   };
   return (
     <>
+      <Banner>Add Your Toys</Banner>
       <div className="bg-[#F4F3F0] p-12 lg:p-24 container mx-auto rounded-lg my-12">
         <h2 className="text-4xl">Add Toys</h2>
         <p>
@@ -165,7 +169,7 @@ const AddToy = () => {
                   <select
                     value={selectedSubcategory}
                     onChange={handleSubcategoryChange}
-                    className="input w-full"
+                    className="input-group w-full"
                   >
                     <option value="">Select a sub-category</option>
                     {options.map((option) => (

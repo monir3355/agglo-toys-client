@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import MyToysRow from "./MyToysRow";
 import Swal from "sweetalert2";
+import Banner from "../../components/Banner";
+import useTitle from "../../customHooks/useTitle";
 
 const MyToys = () => {
-  // const [sortOption, setSortOption] = useState("");
+  useTitle("My Toys");
+  const [sortOption, setSortOption] = useState("");
   const [seeMore, setSeeMore] = useState(false);
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
@@ -16,15 +19,17 @@ const MyToys = () => {
       .then((data) => setMyToys(data));
   }, [user, updateToys]);
 
-  // useEffect(() => {
-  //   fetch(`https://agglo-toys-server.vercel.app/myToys/${user?.email}?sort=${sortOption}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setMyToys(data));
-  // }, [sortOption, user]);
+  useEffect(() => {
+    fetch(
+      `http://localhost:5000/toysSortByPrice/${user?.email}?sortOrder=${sortOption}`
+    )
+      .then((res) => res.json())
+      .then((data) => setMyToys(data));
+  }, [sortOption, user]);
 
-  // const handleSortChange = (e) => {
-  //   setSortOption(e.target.value);
-  // };
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
 
   const handleDeleteToy = (_id) => {
     Swal.fire({
@@ -53,20 +58,34 @@ const MyToys = () => {
 
   return (
     <div>
+      <Banner>My toys</Banner>
       <h2 className="text-4xl text-blue-900 text-center py-12 font-semibold">
-        My toys :{myToys.length}
+        Total My toys :{myToys.length}
       </h2>
       {/* ascending and descending sort by price */}
-      {/* <div>
+      <div className="mb-8 text-right">
         <div>
-          <label htmlFor="sort">Sort by Price:</label>
-          <select id="sort" value={sortOption} onChange={handleSortChange}>
-            <option value="">None</option>
-            <option value="asc">Low to High</option>
-            <option value="desc">High to Low</option>
+          <label className="mr-4 text-lg font-semibold" htmlFor="sort">
+            Sort by Price:
+          </label>
+          <select
+            id="sort"
+            value={sortOption}
+            onChange={handleSortChange}
+            className="border py-2 pl-2 pr-20 rounded-lg text-lg"
+          >
+            <option className="text-lg" value="">
+              None
+            </option>
+            <option className="text-lg" value="asc">
+              Low to High
+            </option>
+            <option className="text-lg" value="desc">
+              High to Low
+            </option>
           </select>
         </div>
-      </div> */}
+      </div>
       <>
         <div className="overflow-x-auto w-full">
           <table className="table w-full">

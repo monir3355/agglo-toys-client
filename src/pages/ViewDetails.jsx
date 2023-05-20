@@ -2,8 +2,10 @@ import React from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../customHooks/useTitle";
 
 const ViewDetails = () => {
+  useTitle("View Details");
   const toy = useLoaderData();
   const {
     _id,

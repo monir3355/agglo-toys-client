@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -15,6 +16,28 @@ const Footer = () => {
           <p>
             Online shopping from a great <br /> selection at Toys & Games Store.
           </p>
+          <div className="space-y-3 mt-4">
+            <h6>
+              <span className="footer-title">Social Media</span>
+            </h6>
+            <p className="inline-flex gap-4">
+              <Link className="text-xl" to="https://www.facebook.com/">
+                <FaFacebook />
+              </Link>
+              <Link className="text-xl" to="https://twitter.com/">
+                <FaTwitter />
+              </Link>
+              <Link className="text-xl" to="https://www.instagram.com/">
+                <FaInstagram />
+              </Link>
+              <Link
+                className="text-xl"
+                to="https://www.linkedin.com/in/md-monirul-islam-300871168/"
+              >
+                <FaLinkedin />
+              </Link>
+            </p>
+          </div>
         </div>
         <div>
           <span className="footer-title">SERVICES</span>

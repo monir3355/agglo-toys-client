@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import AllToysRow from "./AllToysRow";
 import Banner from "../../components/Banner";
 import useTitle from "../../customHooks/useTitle";
@@ -11,6 +11,15 @@ const AllToys = () => {
   // console.log(searchTerm);
   const [toys, setToys] = useState([]);
   const loaderToys = useLoaderData();
+  const navigate = useNavigation();
+  // console.log(navigate.state);
+  if (navigate.state === "loading") {
+    return (
+      <div className="text-center mt-8">
+        <button className="btn loading">loading</button>
+      </div>
+    );
+  }
   useEffect(() => {
     setToys(loaderToys);
   }, [loaderToys]);
@@ -57,7 +66,7 @@ const AllToys = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {toys.slice(0, seeMore ? toys.length : 20).map((toy, count) => (
+            {toys?.slice(0, seeMore ? toys.length : 20).map((toy, count) => (
               <AllToysRow key={toy._id} toy={toy} count={count}></AllToysRow>
             ))}
           </tbody>
@@ -65,7 +74,7 @@ const AllToys = () => {
       </div>
       {!seeMore && (
         <div className="my-12 text-center">
-          {toys.length >= 20 ? (
+          {toys?.length >= 20 ? (
             <button
               onClick={() => setSeeMore(!seeMore)}
               className="btn btn-primary mx-auto"

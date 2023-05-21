@@ -160,19 +160,13 @@ const AddToy = () => {
                   <span className="label-text">Sub Category</span>
                 </label>
                 <label className="input-group">
-                  {/* <input
-                    type="text"
-                    name="sub_category"
-                    placeholder="Enter Sub Category"
-                    className="input w-full"
-                  /> */}
                   <select
                     value={selectedSubcategory}
                     onChange={handleSubcategoryChange}
-                    className="input-group w-full"
+                    className="input w-full"
                   >
                     <option value="">Select a sub-category</option>
-                    {options.map((option) => (
+                    {options?.map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>

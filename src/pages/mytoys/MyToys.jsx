@@ -21,7 +21,7 @@ const MyToys = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/toysSortByPrice/${user?.email}?sortOrder=${sortOption}`
+      `https://agglo-toys-server.vercel.app/toysSortByPrice/${user?.email}?sortOrder=${sortOption}`
     )
       .then((res) => res.json())
       .then((data) => setMyToys(data));
@@ -106,7 +106,7 @@ const MyToys = () => {
             <tbody>
               {/* row 1 */}
               {myToys
-                .slice(0, seeMore ? myToys.length : 20)
+                ?.slice(0, seeMore ? myToys.length : 20)
                 .map((toy, count) => (
                   <MyToysRow
                     key={toy._id}

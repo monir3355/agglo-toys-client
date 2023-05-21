@@ -3,6 +3,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import useTitle from "../customHooks/useTitle";
+import Banner from "../components/Banner";
 
 const ViewDetails = () => {
   useTitle("View Details");
@@ -22,10 +23,8 @@ const ViewDetails = () => {
   } = toy;
   return (
     <div>
-      <h2 className="container mx-auto text-4xl font-bold py-12">
-        Toy details
-      </h2>
-      <div className="flex flex-col md:flex-row md:justify-center md:items-center bg-base-300 rounded-lg px-6 py-8 mb-12 gap-6">
+      <Banner>Toy details</Banner>
+      <div className="flex flex-col md:flex-row md:justify-center md:items-center bg-base-300 rounded-lg px-6 py-8 my-12 gap-6">
         <figure className="md:w-1/2">
           <img className="w-full rounded-lg" src={toy_pic_url} alt="Toy" />
         </figure>
